@@ -1,6 +1,12 @@
-FROM node:18-alpine as build
-WORKDIR /usr/app/front
-EXPOSE 3000
+
+FROM golang:latest
+
+WORKDIR /app
+
 COPY . .
-RUN npm install
-CMD npm start
+
+RUN go build -o main .
+
+EXPOSE 8080
+
+CMD ["./main"]
